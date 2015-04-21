@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="recordz" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Boustedt\\documents\\visual\ studio\ 2013\\Projects\\MyRecords\\MyRecords\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Boustedt\\documents\\visual\ studio\ 2013\\Projects\\MyRecords\\MyRecords\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="Add write permission to App_Data Folder" description="Add write permission to App_Data folder" value="recordz/App_Data" tags="Hidden">
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Boustedt\\documents\\visual\ studio\ 2013\\Projects\\MyRecords\\MyRecords\\obj\\Release\\Package\\PackageTmp\\App_Data$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=tcp:m9x4f5d969.database.windows.net,1433;Initial Catalog=recordz_db;User Id=MattiasDB@m9x4f5d969;Password=hejhej1!" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Boustedt\\documents\\visual\ studio\ 2013\\Projects\\MyRecords\\MyRecords\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

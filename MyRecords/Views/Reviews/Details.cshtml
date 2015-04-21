@@ -1,0 +1,33 @@
+﻿@model MyRecords.Models.Review
+
+@{
+    ViewBag.Title = "Review Details";
+}
+
+<div id="review-wrapper">
+    <article>
+        <div class="row col-lg-12">
+            <h2>@Html.DisplayFor(model => model.Album.AlbumName)</h2>
+            <h3>@Html.DisplayFor(model => model.ReviewTitle)</h3>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <p>@Html.DisplayFor(model => model.ReviewContent)</p>
+            </div>
+            <aside>
+                <div class="col-lg-4">
+                    <h4>Posted by @Html.DisplayFor(model => model.ReviewerEmail)</h4>
+                </div>
+            </aside>
+        </div>
+
+        <footer>
+            <p>
+                Posted by @Html.DisplayFor(model => model.ReviewerEmail) <br />
+                @Html.ActionLink("Edit", "Edit", new { id = Model.ReviewId }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </footer>
+    </article>
+</div>

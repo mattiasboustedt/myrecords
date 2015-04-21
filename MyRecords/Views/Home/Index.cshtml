@@ -1,0 +1,99 @@
+﻿@model IEnumerable<MyRecords.Models.Artist>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>Latest Artists</h2>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3">
+            <div class="thumbnail">
+                @if (item.Files.Any(f => f.FileType == FileType.Image))
+                {
+                    <img src="~/File?id=@item.Files.First(f => f.FileType ==FileType.Image).FileId" alt="Band Image" class="img-thumbnail">
+                }
+                else
+                {
+                    <img src="http://placehold.it/242/242" alt="Placeholder img" class="img-thumbnail">
+                }
+                <div class="caption">
+                    <h3>@Html.DisplayFor(modelItem => item.ArtistName)</h3>
+                    <h4>@Html.DisplayFor(modelItem => item.Country)</h4>
+                    <p>
+                        @Html.ActionLink("Edit", "Edit","Artists", new { id = item.ArtistId }, null) |
+                        @Html.ActionLink("Details", "Details", "Artists", new { id = item.ArtistId }, null) |
+                        @Html.ActionLink("Delete", "Delete", "Artists", new { id = item.ArtistId }, null)
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <h2>Latest Albums</h2>
+        <table class="table">
+            <tr>
+                <th>
+                    Artist Name
+                </th>
+                <th>
+                    Album Name
+                </th>
+                <th></th>
+            </tr>
+            @foreach (Album album in ViewBag.albums)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => album.Artist.ArtistName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => album.AlbumName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Read More", "Details", "Albums", new { id = album.AlbumId }, null)
+                    </td>
+                </tr>
+
+            }
+        </table>
+    </div>
+
+<div class="col-lg-6">
+
+    <h2>Latest Reviews</h2>
+    <table class="table">
+        <tr>
+            <th>
+                Album Name
+            </th>
+            <th>
+                Review Title
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (Review review in ViewBag.reviews)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => review.Album.AlbumName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => review.ReviewTitle)
+                </td>
+                <td>
+                    @Html.ActionLink("Read More", "Details", "Reviews", new { id = review.ReviewId }, null)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+</div>

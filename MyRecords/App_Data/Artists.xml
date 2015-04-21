@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Artists>
+  <Artist>
+    <ArtistId>1</ArtistId>
+    <ArtistName>Mr Big</ArtistName>
+    <Country>Canada</Country>
+  </Artist>
+  <Artist>
+    <ArtistId>2</ArtistId>
+    <ArtistName>Metallica</ArtistName>
+    <Country>USA</Country>
+  </Artist>
+  <Artist>
+    <ArtistId>3</ArtistId>
+    <ArtistName>Slipknot</ArtistName>
+    <Country>USA</Country>
+  </Artist>
+  <Artist>
+    <ArtistId>4</ArtistId>
+    <ArtistName>Ramones</ArtistName>
+    <Country>USA</Country>
+  </Artist>
+  <Artist>
+    <ArtistId>5</ArtistId>
+    <ArtistName>Orup</ArtistName>
+    <Country>Sweden</Country>
+  </Artist>
+  <Artist>
+    <ArtistId>6</ArtistId>
+    <ArtistName>The Who</ArtistName>
+    <Country>England</Country>
+  </Artist>
+  <Artist>
+    <ArtistId>7</ArtistId>
+    <ArtistName>The Beatles</ArtistName>
+    <Country>England</Country>
+  </Artist>
+  <Artist>
+    <ArtistId>8</ArtistId>
+    <ArtistName>Os Mutantes</ArtistName>
+    <Country>Brazil</Country>
+  </Artist>
+</Artists>

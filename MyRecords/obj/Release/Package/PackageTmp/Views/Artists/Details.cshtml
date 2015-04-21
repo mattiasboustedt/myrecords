@@ -1,0 +1,62 @@
+﻿@model MyRecords.Models.Artist
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Artist</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @if (Model.Files.Any(f => f.FileType == FileType.Image))
+        {
+            <dt>
+                Image
+            </dt>
+            <dd>
+                <img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.Image).FileId" alt="Image" class="img-thumbnail" />
+            </dd>
+        }
+        <dt>
+            @Html.DisplayNameFor(model => model.ArtistName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArtistName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Album)
+        </dt>
+        <dd>
+            <table id="albumTable">
+                    <tr>
+                        <th>Album Name</th>
+                        <th>Release Year</th>
+                        <th>Amount of Tracks</th>
+                    </tr>
+                    @foreach (var item in Model.Album) {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.AlbumName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ReleaseYear)</td>
+                        <td>@Html.DisplayFor(modelItem => item.AmountOfTracks)</td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ArtistId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

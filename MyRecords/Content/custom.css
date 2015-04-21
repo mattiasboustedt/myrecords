@@ -1,0 +1,110 @@
+﻿#profilepicture {
+    border: 0px;
+}
+
+.no-margin {
+    margin:0px;
+}
+
+.no-margin-bottom {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.-no-margin-top {
+    margin-top: 0;
+    margin-bottom: 10.5px;
+}
+
+.extra-margin{
+    margin-right:30px;
+}
+
+.no-padding {
+    padding: 0px;
+}
+
+.no-border {
+    border:0 !important;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.text-smaller {
+    font-size: 0.85em;
+}
+
+.bg-light-gray {
+    background-color: #f7f7f7;
+}
+
+.small-padding {
+    padding-left: 21px;
+}
+
+
+
+#topSection {
+  /*background: url(https://download.unsplash.com/photo-1425036458755-dc303a604201);*/
+  background-color:#008cba;
+  background-size: cover;
+  z-index: 1;
+}
+
+
+.profile-picture-margin {
+    margin-left: 21px;
+    margin-bottom: 21px !important;
+}
+
+.margin-bottom {
+    margin-bottom: 21px;
+}
+
+.status-update {
+    border:0px;
+    font-style: italic;
+    padding-left: 0px;
+    margin: 0px;
+    color: black;
+}
+
+.max-width {
+    max-width: 242px;
+    max-height: 242px;
+}
+
+
+.main-paragraph {
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 0.9em;
+}
+
+
+.post-row {
+    padding-top: 10.5px;
+    padding-bottom: 10.5px;
+    margin-bottom: 10px;
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+.post-row:nth-child(even) {
+    background-color: #f7f7f7;
+}
+
+.artist-row {
+
+}
+.artist-row:nth-child(even) {
+    background-color:#f7f7f7;
+}
+
+#no-margin {
+    margin: 0px;
+}

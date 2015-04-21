@@ -1,0 +1,52 @@
+﻿@using Microsoft.AspNet.Identity
+@model PagedList.IPagedList<MyRecords.Models.ApplicationUser>
+@using PagedList.Mvc
+
+
+
+@{
+    ViewBag.Title = "All Profiles";
+}
+
+<h2>All Members</h2>
+
+@foreach (var item in Model)
+    {
+
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="thumbnail" id="profilepicture">
+                        @if (item.Files.Any(f => f.FileType == FileType.Image))
+                        {
+                            <img src="~/File?id=@item.Files.First(f => f.FileType ==FileType.Image).FileId" alt="Profile Picture" class="img-thumbnail">
+                        }
+
+                        else
+                        {
+                            <img src="http://placehold.it/140/140" alt="Profile Picture" class="img-thumbnail" />
+                        }
+                    <div class="caption text-center">
+                        @Html.ActionLink("View Profile", "ProfileDetails", "Profiles", new { id = item.Id }, new { @class ="no-margin" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                    <h3 class="no-margin bold">@item.FirstName @item.LastName</h3>
+                    <p>
+                        @item.Country, @item.City. <br />
+                        @item.Age years old
+                    </p>
+
+                    <h4 class="no-margin bold">Status:</h4>
+                    <p class="italic no-margin">@item.StatusUpdate</p>
+                    <p class="italic text-smaller">Updated at @item.LatestUpdate</p>
+            </div>
+        </div>
+    <hr />     
+    }
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("AllProfiles","Profiles",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

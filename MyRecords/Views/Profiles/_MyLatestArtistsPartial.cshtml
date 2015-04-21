@@ -1,0 +1,34 @@
+﻿<div class="row">
+        <div class="col-lg-12">
+            <h3 class="-no-margin-top bold">Latest Artists</h3>
+        </div>
+</div>
+
+<div class="row col-lg-12">
+        @foreach (Artist artist in ViewBag.MyArtists)
+        {
+            <div class="col-lg-3">
+                <div class="thumbnail">
+                    @if (artist.Files.Any(f => f.FileType == FileType.Image))
+                    {
+                        <img src="~/File?id=@artist.Files.First(f => f.FileType ==FileType.Image).FileId" alt="Band Image" class="img-thumbnail max-width no-border">
+                    }
+                    else
+                    {
+                        <img src="http://placehold.it/242/242" alt="Placeholder img" class="img-thumbnail max-width no-border">
+                    }
+                    <div class="caption">
+                        <p class="main-paragraph">
+                            @Html.DisplayFor(modelItem => artist.ArtistName) <br />
+                            @Html.DisplayFor(modelItem => artist.Country)
+                        </p>
+                        <p class="text-smaller">
+                            @Html.ActionLink("Edit", "Edit", "Artists", new { id = artist.ArtistId }, null) |
+                            @Html.ActionLink("Details", "Details", "Artists", new { id = artist.ArtistId }, null) |
+                            @Html.ActionLink("Delete", "Delete", "Artists", new { id = artist.ArtistId }, null)
+                        </p>
+                    </div>
+                </div>
+        </div>
+        }
+</div>

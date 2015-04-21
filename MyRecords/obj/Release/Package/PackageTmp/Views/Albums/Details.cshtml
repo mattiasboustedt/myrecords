@@ -1,0 +1,71 @@
+﻿@model MyRecords.Models.Album
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Album</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Artist.ArtistName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Artist.ArtistName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AlbumName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlbumName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReleaseYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReleaseYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountOfTracks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AmountOfTracks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Review)
+        </dt>
+        <dd>
+            <table id="reviewTable">
+                <tr>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>Reviwer Email</th>
+                </tr>
+                @foreach (var item in Model.Review)
+                {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.ReviewTitle)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ReviewContent)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ReviewerEmail)</td>
+                </tr>
+                }
+            </table>
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AlbumId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

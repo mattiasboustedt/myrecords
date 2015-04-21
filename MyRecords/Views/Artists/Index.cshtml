@@ -1,0 +1,58 @@
+﻿@model PagedList.IPagedList<MyRecords.Models.Artist>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Artists";
+}
+
+<h2>Artists</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" class="btn btn-default" />
+    </p>
+
+}
+<p>
+    @Html.ActionLink("Show All", "Index", "Artists", new { currentFilter = "" }, new { @class = "btn btn-default" })
+</p>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3">
+            <div class="thumbnail">
+                @if (item.Files.Any(f => f.FileType == FileType.Image))
+                {
+                    <img src="~/File?id=@item.Files.First(f => f.FileType ==FileType.Image).FileId" alt="Band Image" class="img-thumbnail">
+                }
+                else
+                {
+                    <img src="http://placehold.it/242/242" alt="Placeholder img" class="img-thumbnail">
+                }
+                <div class="caption">
+                    <h3>@Html.DisplayFor(modelItem => item.ArtistName)</h3>
+                    <h4>@Html.DisplayFor(modelItem => item.Country)</h4>
+                    <p>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ArtistId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ArtistId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ArtistId })
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+

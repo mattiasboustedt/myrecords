@@ -1,0 +1,96 @@
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<MyRecords.Models.ApplicationUser>
+
+
+
+@{
+    ViewBag.Title = "My Profile";
+ }
+
+<section class="bg-light-gray">
+    <div class="row">
+        <div class="col-lg-4">
+            <h3 class="profile-picture-margin">Your Profile</h3>
+        </div>
+    </div>
+    
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="thumbnail profile-picture-margin" id="profilepicture">
+                    @foreach (var item in Model)
+                    {
+                        if (item.Files.Any(f => f.FileType == FileType.Image))
+                        {
+                            <img src="~/File?id=@item.Files.First(f => f.FileType ==FileType.Image).FileId" alt="Profile Picture" class="img-thumbnail max-width">
+                        }
+
+                        else
+                        {
+                            <img src="http://placehold.it/140/140" alt="Profile Picture" class="img-thumbnail" />
+                        }
+                    }
+                </div>
+            </div>
+
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3">
+
+                    <h3 class="no-margin bold">@item.FirstName @item.LastName</h3>
+                    <p class="main-paragraph">
+                        @User.Identity.GetUserName()<br />
+                        @item.Country, @item.City. <br />
+                        @item.Age years old
+                    </p>
+                </div>
+                <div class="col-lg-5">
+                    <h3 class="no-margin bold">Status:</h3>
+                    <blockquote class="status-update">"@item.StatusUpdate"</blockquote>
+                    <p class="italic text-smaller margin-bottom">Updated at @item.LatestUpdate</p>
+                </div>
+            }
+        </div>
+    </section>
+
+<div class="row">
+    <div class="col-lg-12">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Update Status", "UpdateStatus", "Profiles", new { id = User.Identity.GetUserId() }, null)</li>
+                        <li>@Html.ActionLink("Reply Guestbook", "Create", "Posts", null, null)</li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        @foreach (var item in Model)
+                        {
+                            <li>@Html.ActionLink("Edit Profile", "EditProfile", "Profiles", new { id = item.Id }, new { @class = "no-margin" })</li>
+
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<section>
+    @Html.Partial("_MyLatestArtistsPartial")
+</section>
+
+<section>
+    @Html.Partial("_GuestBookPartial")
+</section>
+
+<section>
+    @Html.Partial("_PostGuestBookPartial", Model)
+</section>

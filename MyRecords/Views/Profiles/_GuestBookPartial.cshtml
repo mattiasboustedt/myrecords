@@ -1,0 +1,32 @@
+﻿    <section>
+        <div class="row">
+            <div class="col-lg-8">
+                <h3 class="bold">Public Guestbook</h3>
+            </div>
+        </div>
+        @foreach (Post post in ViewBag.MyPosts)
+        {
+            <div class="row post-row">
+                <div class="col-lg-2">
+                    <div class="thumbnail no-margin max-width">
+                        @if (post.PostSender.Files.Any(f => f.FileType == FileType.Image))
+                        {
+                            <img src="~/File?id=@post.PostSender.Files.First(f => f.FileType ==FileType.Image).FileId" alt="Profile Picture" class="img-thumbnail max-width">
+                        }
+
+                        else
+                        {
+                            <img src="http://placehold.it/140/140" alt="Profile Picture" class="img-thumbnail max-width" />
+                        }
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <h4 class="no-margin bold">@post.Subject</h4>
+                    <p class="no-margin">@post.Message</p>
+                    <p class="italic text-smaller">Posted by @Html.ActionLink(@post.PostSender.FirstName + " " + @post.PostSender.LastName, "ProfileDetails", "Profiles", new { id = @post.PostSender.Id }, new { @class = "no-margin" }) at @post.DatePosted</p>
+                    <p class="text-smaller no-margin">@Html.ActionLink("Delete Post", "Delete/" + @post.PostId, "Posts", null, null)</p>
+                </div>
+            </div>
+        }
+    </section>
